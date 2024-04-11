@@ -1,3 +1,3 @@
-# patrice-codes
+# <https://patrice.codes/>
 
 ## This is my personal website 👋
