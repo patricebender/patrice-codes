@@ -1,5 +1,7 @@
 # patrice-codes
 
+This is my personal website 👋
+
 ## Project setup
 ```
 npm install
