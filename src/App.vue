@@ -61,13 +61,41 @@ body {
 }
 
 .content {
-  margin-bottom: 20px;
+  margin: 0 auto; /* Center the content */
+  max-width: 800px; /* Limit the width to 800px */
+  padding: 0 10px; /* Add some padding on the sides */
+}
+
+.introduction {
+  margin-top: 20px;
+  font-size: 1.3em; /* Increase the font size */
+}
+
+/* Optional: Adjust the line-height for better readability */
+.introduction {
+  line-height: 1.6;
+}
+
+
+/* Keyframes for rotation animation */
+/* Keyframes for vertical rotation animation */
+@keyframes rotateImageVertically {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
 }
 
 .profile-picture {
   max-width: 200px;
   border-radius: 50%;
+  /* Apply the vertical rotation animation */
+  animation: rotateImageVertically 1.5s ease-in-out 2;
 }
+
+
 
 .introduction {
   margin-top: 20px;
