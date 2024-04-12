@@ -1,18 +1,22 @@
 <template>
   <div id="app">
     <div class="content">
-      <img :src="profilePicture" alt="Your Name" class="profile-picture" />
+      <img ref="profilePicture" :src="profilePicture" alt="Patrice & Gunnar" class="profile-picture"
+        @click="rotateProfilePicture" id="profile-picture" />
       <h2>Hey there! 👋</h2>
       <p class="introduction">
         I'm Patrice, a member of the cds-compiler team at SAP, where I help to build the
         backbone of the <a href="https://cap.cloud.sap/docs/">SAP Cloud Application Programming (CAP) Model</a>.
-        Besides my duty in the cds-compiler team, I'm particularly excited about our work on the open source <a href="https://github.com/cap-js/cds-dbs" target="_blank" rel="noopener noreferrer">
-        database services for CAP</a>.
+        Besides my duty in the cds-compiler team, I'm particularly excited about our work on the open source <a
+          href="https://github.com/cap-js/cds-dbs" target="_blank" rel="noopener noreferrer">
+          database services for CAP</a>.
       </p>
       <h2>In My Free Time</h2>
       <p class="introduction">
-        When I'm not coding, you'll find me outdoors with my Husky, Gunnar, enjoying activities together such as canicross,
-        bikejöring or taking out the inline skates for a ride. I'm also a foodie who loves to cook and savor good coffee.
+        When I'm not coding, you'll find me outdoors with my Husky, Gunnar, enjoying activities together such as
+        canicross,
+        bikejöring or taking out the inline skates for a ride. I'm also a foodie who loves to cook and savor good
+        coffee.
       </p>
 
       <p class="introduction">
@@ -45,8 +49,20 @@ export default {
       linkedInIcon: require('@/assets/linkedin-mark.svg'),
       mailIcon: require('@/assets/mail-mark.svg'),
       huskyIcon: require('@/assets/husky.svg'),
+      rotationCounter: 0, // Add this line
     };
   },
+  methods: {
+    rotateProfilePicture() {
+      this.rotationCounter++; // Increment the counter
+      const picture = this.$refs.profilePicture; // Access the image using a ref
+      // Force reflow to ensure the animation is recognized as new
+      picture.style.animation = 'none';
+      picture.offsetHeight; // Trigger reflow
+      // Apply the animation with the rotationCounter to ensure uniqueness
+      picture.style.animation = `${this.rotationCounter % 2 === 0 ? 'rotateImageVertically' : 'rotateImageHorizontally'} 1s ease-in-out`;
+    }
+  }
 };
 </script>
 
@@ -61,14 +77,18 @@ body {
 }
 
 .content {
-  margin: 0 auto; /* Center the content */
-  max-width: 800px; /* Limit the width to 800px */
-  padding: 0 10px; /* Add some padding on the sides */
+  margin: 0 auto;
+  /* Center the content */
+  max-width: 800px;
+  /* Limit the width to 800px */
+  padding: 0 10px;
+  /* Add some padding on the sides */
 }
 
 .introduction {
   margin-top: 20px;
-  font-size: 1.3em; /* Increase the font size */
+  font-size: 1.3em;
+  /* Increase the font size */
 }
 
 /* Optional: Adjust the line-height for better readability */
@@ -83,8 +103,19 @@ body {
   from {
     transform: rotateY(0deg);
   }
+
   to {
     transform: rotateY(360deg);
+  }
+}
+
+@keyframes rotateImageHorizontally {
+  from {
+    transform: rotateX(0deg);
+  }
+
+  to {
+    transform: rotateX(360deg);
   }
 }
 
@@ -92,10 +123,8 @@ body {
   max-width: 200px;
   border-radius: 50%;
   /* Apply the vertical rotation animation */
-  animation: rotateImageVertically 1.5s ease-in-out 2;
+  animation: rotateImageVertically 1.5s ease-in-out;
 }
-
-
 
 .introduction {
   margin-top: 20px;
