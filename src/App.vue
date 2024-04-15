@@ -14,7 +14,7 @@
       </p>
       <h2>In My Free Time</h2>
       <p class="introduction">
-        When I'm not coding, you'll find me outdoors with my Husky, Gunnar, enjoying activities together such as
+        When I'm not coding, you'll find me outdoors with my Husky Gunnar, enjoying activities together such as
         canicross,
         bikejöring, or taking out the inline skates for a ride. I'm also a foodie who loves to cook and savor good
         coffee.
