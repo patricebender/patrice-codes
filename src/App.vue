@@ -5,7 +5,8 @@
         @click="rotateProfilePicture" />
       <h2>Hey there! 👋</h2>
       <p class="introduction">
-        I'm Patrice, a member of the cds-compiler team at SAP, where I help to build the
+        I'm Patrice, a passionate software engineer 💻<br />
+        As a member of the <a href="https://www.npmjs.com/package/@sap/cds-compiler" arget="_blank" rel="noopener noreferrer">cds-compiler</a> team at SAP, I help to build the
         backbone of the <a href="https://cap.cloud.sap/docs/" target="_blank" rel="noopener noreferrer">SAP Cloud
           Application Programming (CAP) Model</a>.
         Besides my duty in the cds-compiler team, I'm particularly excited about our work on the open source <a
@@ -20,7 +21,7 @@
         coffee.
       </p>
       <p class="introduction">
-        <strong>Welcome to my corner of the web!</strong>
+        <strong>Welcome to my corner of the web! 🚀</strong>
       </p>
     </div>
     <footer>
@@ -75,7 +76,14 @@ export default {
   methods: {
     setUpColorSchemeListener() {
       this.colorSchemeQuery = window.matchMedia('(prefers-color-scheme: dark)');
-      this.handleColorSchemeChange(this.colorSchemeQuery); // Initial check
+      // check if user has isDarkMode preference saved to local storage
+      const isDarkMode = localStorage.getItem('isDarkMode');
+      if (isDarkMode) {
+        this.isDarkMode = JSON.parse(isDarkMode);
+      }
+      else {
+        this.handleColorSchemeChange(this.colorSchemeQuery); // Initial check
+      }
       this.colorSchemeQuery.addListener(this.handleColorSchemeChange); // Set up the listener
     },
     handleColorSchemeChange(e) {
@@ -117,25 +125,23 @@ body {
   text-align: center;
 }
 
-.content {
-  flex: 1;
-  /* Allows the content to expand and fill the space available, excluding header/footer */
-}
-
 body {
   font-family: 'Roboto', sans-serif;
 }
 
 .content {
+  flex: 1;
   margin: 0 auto;
   max-width: 800px;
   padding: 0 10px;
+  padding-bottom: 3.5em;
+  /* Adjust based on the actual height of your footer */
 }
 
+
 .introduction {
-  margin-top: 20px;
   font-size: 1.3em;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 .profile-picture {
@@ -146,36 +152,26 @@ body {
 }
 
 footer {
+  position: fixed;
+  /* Fixes the footer's position relative to the viewport */
+  bottom: 0;
+  /* Aligns the footer at the bottom of the viewport */
+  left: 0;
+  /* Aligns the footer to start from the left side of the viewport */
+  width: 100%;
+  /* Ensures the footer extends across the full width of the viewport */
   background-color: #f0f0f0;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
+  z-index: 1000;
+  /* Ensures the footer stays above other content */
 
-  padding: 10px 0;
+  height: 4em;
+  ;
 }
 
-/* Responsive Media Query */
-@media screen and (max-height: 400px) {
-  footer {
-    padding: 5px 0;
-    flex-wrap: wrap;
-    /* Wrap items if there isn't enough vertical space */
-  }
-
-  .social-icon {
-    margin: 0.5em;
-    /* Reduce margin around icons to save space */
-  }
-}
-
-/* Additional media query for handling zooming issues */
-@media (max-resolution: 2dppx) {
-  .social-icon {
-    width: 20px;
-    /* Smaller icons at higher zoom levels */
-  }
-}
 
 .social-icon {
   width: 24px;

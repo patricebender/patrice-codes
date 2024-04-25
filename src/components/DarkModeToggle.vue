@@ -18,6 +18,9 @@ export default {
     methods: {
         onToggle(event) {
             this.$emit('update:isDarkMode', event.target.checked);
+            // save theme preference in local storage
+            localStorage.setItem('isDarkMode', event.target.checked);
+            console.log('Dark mode is now:', event.target.checked ? 'enabled' : 'disabled');
         }
     }
 };
