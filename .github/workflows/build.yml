@@ -50,6 +50,9 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
+      - name: List output files
+        run: ls -l dist
+        
 
       # Deploy to GitHub Pages
       - name: Deploy GitHub Pages site
