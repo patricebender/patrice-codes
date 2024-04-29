@@ -129,7 +129,7 @@ body {
   margin: 0 auto;
   max-width: 800px;
   padding: 0 10px;
-  padding-bottom: 3.5em;
+  padding-bottom: 5em;
   display: flex;
   flex-direction: column;
   justify-content: center;
