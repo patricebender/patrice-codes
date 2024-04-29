@@ -6,7 +6,7 @@
       <h2>Hey there! 👋</h2>
       <p class="introduction">
         I'm Patrice, a passionate software engineer 💻<br />
-        As a member of the <a href="https://www.npmjs.com/package/@sap/cds-compiler" arget="_blank" rel="noopener noreferrer">cds-compiler</a> team at SAP, I help to build the
+        <br />As a member of the <a href="https://www.npmjs.com/package/@sap/cds-compiler" arget="_blank" rel="noopener noreferrer">cds-compiler</a> team at SAP, I help to build the
         backbone of the <a href="https://cap.cloud.sap/docs/" target="_blank" rel="noopener noreferrer">SAP Cloud
           Application Programming (CAP) Model</a>.
         Besides my duty in the cds-compiler team, I'm particularly excited about our work on the open source <a
@@ -111,23 +111,18 @@ body {
   padding: 0;
   margin: 0;
   height: 100%;
-  /* Ensures that the body takes full viewport height */
   width: 100%;
-  /* Ensures that the body takes full viewport width */
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
 }
 
 /* Ensure #app takes full available height */
 #app {
   min-height: 100vh;
-  /* vh units ensure the element takes at least the full height of the viewport */
   display: flex;
   flex-direction: column;
-  text-align: center;
 }
 
-body {
-  font-family: 'Roboto', sans-serif;
-}
 
 .content {
   flex: 1;
@@ -135,20 +130,32 @@ body {
   max-width: 800px;
   padding: 0 10px;
   padding-bottom: 3.5em;
-  /* Adjust based on the actual height of your footer */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 
 .introduction {
   font-size: 1.3em;
   line-height: 1.5;
+  margin: 0;
 }
 
 .profile-picture {
-  max-width: 200px;
+  max-width: 250px;
   border-radius: 50%;
   animation: rotateImageVertically 1.5s ease-in-out;
   margin-top: 1em;
+  display: block;      /* Makes the img a block-level element */
+  margin-left: auto;   /* Auto margin on both sides will center the image */
+  margin-right: auto;
+}
+/* slightly reduces size for mobile devices */
+@media (max-width: 600px) {
+  .profile-picture {
+    max-width: 200px;
+  }
 }
 
 footer {
@@ -167,9 +174,7 @@ footer {
   text-align: center;
   z-index: 1000;
   /* Ensures the footer stays above other content */
-
   height: 4em;
-  ;
 }
 
 
