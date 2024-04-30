@@ -8,7 +8,7 @@
         I'm Patrice, a passionate software engineer 💻<br />
         <br />As a member of the <a href="https://www.npmjs.com/package/@sap/cds-compiler" arget="_blank" rel="noopener noreferrer">cds-compiler</a> team at SAP, I help to build the
         backbone of the <a href="https://cap.cloud.sap/docs/" target="_blank" rel="noopener noreferrer">SAP Cloud
-          Application Programming (CAP) Model</a>.
+          Application Programming (CAP 🧢) Model</a>.
         Besides my duty in the cds-compiler team, I'm particularly excited about our work on the open source <a
           href="https://github.com/cap-js/cds-dbs" target="_blank" rel="noopener noreferrer">
           database services for CAP</a>.
