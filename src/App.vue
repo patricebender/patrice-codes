@@ -156,6 +156,10 @@ body {
   .profile-picture {
     max-width: 200px;
   }
+
+  #introduction {
+    font-size: 1em;
+  }
 }
 
 footer {
