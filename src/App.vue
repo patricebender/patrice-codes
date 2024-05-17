@@ -1,12 +1,13 @@
 <template>
   <div id="app" :class="{ 'dark-mode': isDarkMode }">
-    <div class="content">
+    <div id="content">
       <img ref="profilePicture" :src="profilePicture" alt="Patrice & Gunnar" class="profile-picture"
         @click="rotateProfilePicture" />
-      <h2>Hey there! 👋</h2>
+      <h2>Hey there! <span id="shake-hand">👋</span></h2>
       <p class="introduction">
         I'm Patrice, a passionate software engineer 💻<br />
-        <br />As a member of the <a href="https://www.npmjs.com/package/@sap/cds-compiler" arget="_blank" rel="noopener noreferrer">cds-compiler</a> team at SAP, I help to build the
+        <br />As a member of the <a href="https://www.npmjs.com/package/@sap/cds-compiler" target="_blank"
+          rel="noopener noreferrer">cds-compiler</a> team at SAP, I help to build the
         backbone of the <a href="https://cap.cloud.sap/docs/" target="_blank" rel="noopener noreferrer">SAP Cloud
           Application Programming (CAP 🧢) Model</a>.
         Besides my duty in the cds-compiler team, I'm particularly excited about our work on the open source <a
@@ -38,7 +39,7 @@
       </a>
       |
       <a>
-        <dark-mode-toggle class="toggle" :is-dark-mode="isDarkMode"
+        <dark-mode-toggle id="toggle" :is-dark-mode="isDarkMode"
           @update:isDarkMode="isDarkMode = $event"></dark-mode-toggle>
       </a>
     </footer>
@@ -105,7 +106,6 @@ export default {
 
 
 <style>
-/* Reset CSS for html and body */
 html,
 body {
   padding: 0;
@@ -116,7 +116,6 @@ body {
   text-align: center;
 }
 
-/* Ensure #app takes full available height */
 #app {
   min-height: 100vh;
   display: flex;
@@ -124,7 +123,7 @@ body {
 }
 
 
-.content {
+#content {
   flex: 1;
   margin: 0 auto;
   max-width: 800px;
@@ -137,7 +136,8 @@ body {
 
 
 .introduction {
-  font-size: 1.3em;
+  font-size: 1.5em;
+  font-weight: 400;
   line-height: 1.5;
   margin: 0;
 }
@@ -147,10 +147,11 @@ body {
   border-radius: 50%;
   animation: rotateImageVertically 1.5s ease-in-out;
   margin-top: 1em;
-  display: block;      /* Makes the img a block-level element */
-  margin-left: auto;   /* Auto margin on both sides will center the image */
+  display: block;
+  margin-left: auto;
   margin-right: auto;
 }
+
 /* slightly reduces size for mobile devices */
 @media (max-width: 600px) {
   .profile-picture {
@@ -160,30 +161,31 @@ body {
 
 footer {
   position: fixed;
-  /* Fixes the footer's position relative to the viewport */
   bottom: 0;
-  /* Aligns the footer at the bottom of the viewport */
   left: 0;
-  /* Aligns the footer to start from the left side of the viewport */
   width: 100%;
-  /* Ensures the footer extends across the full width of the viewport */
   background-color: #f0f0f0;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   z-index: 1000;
-  /* Ensures the footer stays above other content */
   height: 4em;
 }
 
+#shake-hand {
+  display: inline-block;
+  animation: wave 1.5s ease-in-out 1;
+  /* delay the animation by one second */
+  animation-delay: 1s;
+}
 
 .social-icon {
   width: 24px;
   margin: 1em;
 }
 
-.toggle {
+#toggle {
   margin: 1em;
 }
 
@@ -201,13 +203,42 @@ footer {
   background-color: #222;
 }
 
-/* Dark Mode */
 .dark-mode .social-icon,
 toggle {
   filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(200%) contrast(100%);
 }
 
 /* Keyframes for rotation animations */
+@keyframes wave {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  15% {
+    transform: rotate(14deg);
+  }
+
+  30% {
+    transform: rotate(-8deg);
+  }
+
+  45% {
+    transform: rotate(14deg);
+  }
+
+  60% {
+    transform: rotate(-4deg);
+  }
+
+  75% {
+    transform: rotate(10deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
 @keyframes rotateImageVertically {
   from {
     transform: rotateY(0deg);
