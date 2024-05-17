@@ -88,7 +88,6 @@ export default {
       this.colorSchemeQuery.addListener(this.handleColorSchemeChange); // Set up the listener
     },
     handleColorSchemeChange(e) {
-      // Update isDarkMode based on the media query
       this.isDarkMode = e.matches;
     },
     toggleDarkMode(newValue) {
@@ -176,7 +175,6 @@ footer {
 #shake-hand {
   display: inline-block;
   animation: wave 1.5s ease-in-out 1;
-  /* delay the animation by one second */
   animation-delay: 1s;
 }
 
