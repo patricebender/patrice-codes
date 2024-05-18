@@ -1,7 +1,7 @@
 <template>
   <div id="app" :class="{ 'dark-mode': isDarkMode }">
     <div id="content">
-      <img ref="profilePicture" :src="profilePicture" alt="Patrice & Gunnar" class="profile-picture"
+      <img :src="profilePicture" alt="Patrice & Gunnar" id="profile-picture"
         @click="rotateProfilePicture" />
       <h2>Hey there! <span id="shake-hand">👋</span></h2>
       <p class="introduction">
@@ -39,8 +39,7 @@
       </a>
       |
       <a>
-        <dark-mode-toggle id="toggle" :is-dark-mode="isDarkMode"
-          @update:isDarkMode="isDarkMode = $event"></dark-mode-toggle>
+        <dark-mode-toggle @click="shakeHand" id="toggle" :is-dark-mode="isDarkMode" @update:isDarkMode="isDarkMode = $event"></dark-mode-toggle>
       </a>
     </footer>
   </div>
@@ -63,6 +62,7 @@ export default {
       mailIcon: require('@/assets/mail-mark.svg'),
       isDarkMode: false, // Theme tracking
       rotationCounter: 0,
+      waveCounter: 0,
     };
   },
   mounted() {
@@ -90,14 +90,23 @@ export default {
     handleColorSchemeChange(e) {
       this.isDarkMode = e.matches;
     },
-    toggleDarkMode(newValue) {
-      this.isDarkMode = newValue;
-    },
     rotateProfilePicture() {
       this.rotationCounter++;
-      const picture = this.$refs.profilePicture;
+      const picture = document.getElementById('profile-picture');
       picture.style.animation = 'none';
       picture.style.animation = `${this.rotationCounter % 2 === 0 ? 'rotateImageVertically' : 'rotateImageHorizontally'} 1s ease-in-out`;
+    },
+    shakeHand(e) {
+      this.waveCounter++;
+      console.log(e)
+      const shakeHand = document.getElementById('shake-hand');
+      shakeHand.style.animation = 'none';
+      shakeHand.offsetHeight; // Trigger reflow, browser does not re-render the animation otherwise
+      shakeHand.style.animation = 'wave 1.5s ease-in-out';
+      // if the wave counter is 7, the 👋 should be replaced by 🫰
+      if (this.waveCounter === 10) {
+        shakeHand.innerHTML = '🫰';
+      }
     }
   }
 };
@@ -141,7 +150,7 @@ body {
   margin: 0;
 }
 
-.profile-picture {
+#profile-picture {
   max-width: 250px;
   border-radius: 50%;
   animation: rotateImageVertically 1.5s ease-in-out;
@@ -212,6 +221,35 @@ toggle {
 
 /* Keyframes for rotation animations */
 @keyframes wave {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  15% {
+    transform: rotate(14deg);
+  }
+
+  30% {
+    transform: rotate(-8deg);
+  }
+
+  45% {
+    transform: rotate(14deg);
+  }
+
+  60% {
+    transform: rotate(-4deg);
+  }
+
+  75% {
+    transform: rotate(10deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+@keyframes waveTwo {
   0% {
     transform: rotate(0deg);
   }
