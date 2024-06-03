@@ -1,8 +1,7 @@
 <template>
   <div id="app" :class="{ 'dark-mode': isDarkMode }">
     <div id="content">
-      <img :src="profilePicture" alt="Patrice & Gunnar" id="profile-picture"
-        @click="rotateProfilePicture" />
+      <img :src="profilePicture" alt="Patrice & Gunnar" id="profile-picture" @click="rotateProfilePicture" />
       <h2>Hey there! <span id="shake-hand">👋</span></h2>
       <p class="introduction">
         I'm Patrice, a passionate software engineer 💻<br />
@@ -22,7 +21,7 @@
         coffee.
       </p>
       <p class="introduction">
-        <strong>Welcome to my corner of the web! 🚀</strong>
+        <strong>Welcome to my corner of the web! <span id="rocket" @click="animateRocket">🚀</span></strong>
       </p>
     </div>
     <footer>
@@ -39,7 +38,8 @@
       </a>
       |
       <a>
-        <dark-mode-toggle @click="shakeHand" id="toggle" :is-dark-mode="isDarkMode" @update:isDarkMode="isDarkMode = $event"></dark-mode-toggle>
+        <dark-mode-toggle @click="shakeHand" id="toggle" :is-dark-mode="isDarkMode"
+          @update:isDarkMode="isDarkMode = $event"></dark-mode-toggle>
       </a>
     </footer>
   </div>
@@ -90,15 +90,20 @@ export default {
     handleColorSchemeChange(e) {
       this.isDarkMode = e.matches;
     },
+    animateRocket() {
+      const rocket = document.getElementById('rocket');
+      rocket.style.animation = 'none';
+      rocket.offsetHeight; // Trigger reflow, browser does not re-render the animation otherwise
+      rocket.style.animation = 'liftoff 0.2s ease-in 5, fly 1.5s ease-in-out 1s';
+    },
     rotateProfilePicture() {
       this.rotationCounter++;
       const picture = document.getElementById('profile-picture');
       picture.style.animation = 'none';
       picture.style.animation = `${this.rotationCounter % 2 === 0 ? 'rotateImageVertically' : 'rotateImageHorizontally'} 1s ease-in-out`;
     },
-    shakeHand(e) {
+    shakeHand() {
       this.waveCounter++;
-      console.log(e)
       const shakeHand = document.getElementById('shake-hand');
       shakeHand.style.animation = 'none';
       shakeHand.offsetHeight; // Trigger reflow, browser does not re-render the animation otherwise
@@ -124,53 +129,6 @@ body {
   text-align: center;
 }
 
-#app {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-
-#content {
-  flex: 1;
-  margin: 0 auto;
-  max-width: 800px;
-  padding: 0 10px;
-  padding-bottom: 5em;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-
-.introduction {
-  font-size: 1.5em;
-  font-weight: 400;
-  line-height: 1.5;
-  margin: 0;
-}
-
-#profile-picture {
-  max-width: 250px;
-  border-radius: 50%;
-  animation: rotateImageVertically 1.5s ease-in-out;
-  margin-top: 1em;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* slightly reduces size for mobile devices */
-@media (max-width: 600px) {
-  .profile-picture {
-    max-width: 200px;
-  }
-
-  #introduction {
-    font-size: 1em;
-  }
-}
-
 footer {
   position: fixed;
   bottom: 0;
@@ -185,18 +143,59 @@ footer {
   height: 4em;
 }
 
+/* unique elements */
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#content {
+  flex: 1;
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 0 10px;
+  padding-bottom: 5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#profile-picture {
+  max-width: 250px;
+  border-radius: 50%;
+  animation: rotateImageVertically 1.5s ease-in-out;
+  margin-top: 1em;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#toggle {
+  margin: 1em;
+}
+
 #shake-hand {
   display: inline-block;
-  animation: wave 1.5s ease-in-out 1;
-  animation-delay: 1s;
+  animation: wave 1.5s ease-in-out 1 1s;
+}
+
+#rocket {
+  display: inline-block;
+  cursor: pointer;
+  animation: liftoff 0.2s ease-in 8 5s;
+}
+
+/* classes */
+.introduction {
+  font-size: 1.5em;
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 0;
 }
 
 .social-icon {
   width: 24px;
-  margin: 1em;
-}
-
-#toggle {
   margin: 1em;
 }
 
@@ -218,6 +217,20 @@ footer {
 toggle {
   filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(200%) contrast(100%);
 }
+
+/* Media queries */
+
+/* slightly reduces size for mobile devices */
+@media (max-width: 600px) {
+  .profile-picture {
+    max-width: 200px;
+  }
+
+  #introduction {
+    font-size: 1em;
+  }
+}
+
 
 /* Keyframes for rotation animations */
 @keyframes wave {
@@ -249,33 +262,37 @@ toggle {
     transform: rotate(0deg);
   }
 }
-@keyframes waveTwo {
+
+@keyframes liftoff {
   0% {
-    transform: rotate(0deg);
+    transform: translateX(0);
   }
 
-  15% {
-    transform: rotate(14deg);
+  25% {
+    transform: translateX(-5px);
   }
 
-  30% {
-    transform: rotate(-8deg);
-  }
-
-  45% {
-    transform: rotate(14deg);
-  }
-
-  60% {
-    transform: rotate(-4deg);
+  50% {
+    transform: translateX(0);
   }
 
   75% {
-    transform: rotate(10deg);
+    transform: translateX(5px);
   }
 
   100% {
-    transform: rotate(0deg);
+    transform: translateX(0);
+  }
+}
+
+@keyframes fly {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translate(100vw, -100vh);
+    ;
   }
 }
 
