@@ -67,6 +67,7 @@ export default {
   },
   mounted() {
     this.setUpColorSchemeListener();
+    document.title = 'Patrice Bender - Personal Website';
   },
   beforeUnmount() {
     // Remove the listener when the component is destroyed
