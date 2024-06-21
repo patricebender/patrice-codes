@@ -2,7 +2,7 @@
   <div id="app" :class="{ 'dark-mode': isDarkMode }">
     <div id="content">
       <img :src="profilePicture" alt="Patrice & Gunnar" id="profile-picture" @click="rotateProfilePicture" />
-      <h2>Hey there! <span id="shake-hand">👋</span></h2>
+      <h1>Hey there! <span id="shake-hand">👋</span></h1>
       <p class="introduction">
         I'm Patrice, a passionate software engineer 💻<br />
         <br />As a member of the <a href="https://www.npmjs.com/package/@sap/cds-compiler" target="_blank"
@@ -25,7 +25,7 @@
       </p>
     </div>
     <footer>
-      <a href="https://www.linkedin.com/in/patrice-bender-64a816118/" target="_blank" rel="noopener noreferrer">
+      <a href="https://www.linkedin.com/in/patrice-bender-64a816118/" alt="LinkedIn"  target="_blank" rel="noopener noreferrer">
         <img :src="linkedInIcon" alt="LinkedIn" class="social-icon" />
       </a>
       |
