@@ -2,7 +2,7 @@
   <div id="app" :class="{ 'dark-mode': isDarkMode }">
     <div id="content">
       <img :src="profilePicture" alt="Patrice & Gunnar" id="profile-picture" @click="rotateProfilePicture" />
-      <h1>Hey there! <span id="shake-hand">👋</span></h1>
+      <h1>Hey there! <span id="shake-hand" @mouseover="shakeHand" @mouseleave="shakeHand">👋</span></h1>
       <p class="introduction">
         I'm Patrice, a passionate software engineer 💻<br />
         <br />As a member of the <a href="https://www.npmjs.com/package/@sap/cds-compiler" target="_blank"
@@ -21,11 +21,13 @@
         coffee.
       </p>
       <p class="introduction">
-        <strong>Welcome to my corner of the web! <span id="rocket" @click="animateRocket">🚀</span></strong>
+        <strong>Welcome to my corner of the web! <span id="rocket" @mouseover="animateRocket"
+            @mouseleave="animateRocket" @click="animateRocket">🚀</span></strong>
       </p>
     </div>
     <footer>
-      <a href="https://www.linkedin.com/in/patrice-bender-64a816118/" alt="LinkedIn"  target="_blank" rel="noopener noreferrer">
+      <a href="https://www.linkedin.com/in/patrice-bender-64a816118/" alt="LinkedIn" target="_blank"
+        rel="noopener noreferrer">
         <img :src="linkedInIcon" alt="LinkedIn" class="social-icon" />
       </a>
       |
@@ -63,6 +65,7 @@ export default {
       isDarkMode: false, // Theme tracking
       rotationCounter: 0,
       waveCounter: 0,
+      rocketIsAboutToStart: false,
     };
   },
   mounted() {
@@ -91,11 +94,24 @@ export default {
     handleColorSchemeChange(e) {
       this.isDarkMode = e.matches;
     },
-    animateRocket() {
+    animateRocket(e) {
       const rocket = document.getElementById('rocket');
       rocket.style.animation = 'none';
       rocket.offsetHeight; // Trigger reflow, browser does not re-render the animation otherwise
+
+      if (e.type === 'mouseover') { // shake the rocket on hover
+        rocket.style.animation = 'liftoff 0.2s ease-in infinite';
+        return;
+      }
+
+      if (e.type === 'mouseleave' && !this.rocketIsAboutToStart) return;
+
+      this.rocketIsAboutToStart = true
       rocket.style.animation = 'liftoff 0.2s ease-in 5, fly 1.5s ease-in-out 1s';
+      // Reset the flag after the animation ends
+      setTimeout(() => {
+        this.rocketIsAboutToStart = false;
+      }, 2000); // Total duration of the animations (liftoff + fly)
     },
     rotateProfilePicture() {
       this.rotationCounter++;
@@ -103,14 +119,20 @@ export default {
       picture.style.animation = 'none';
       picture.style.animation = `${this.rotationCounter % 2 === 0 ? 'rotateImageVertically' : 'rotateImageHorizontally'} 1s ease-in-out`;
     },
-    shakeHand() {
-      this.waveCounter++;
+    shakeHand(e) {
       const shakeHand = document.getElementById('shake-hand');
       shakeHand.style.animation = 'none';
       shakeHand.offsetHeight; // Trigger reflow, browser does not re-render the animation otherwise
+      
+      if(e.type === 'mouseleave') return;
+      if(e.type === 'mouseover') {
+        shakeHand.style.animation = 'wave 1.5s ease infinite';
+        return;
+      }
+      
       shakeHand.style.animation = 'wave 1.5s ease-in-out';
-      // if the wave counter is 7, the 👋 should be replaced by 🫰
-      if (this.waveCounter === 10) {
+      this.waveCounter++;
+      if (this.waveCounter === 10) { // easter egg if dark mode is toggled often enough
         shakeHand.innerHTML = '🫰';
       }
     }
@@ -189,7 +211,7 @@ footer {
 
 /* classes */
 .introduction {
-  font-size: 1.5em;
+  font-size: 1.4em;
   font-weight: 400;
   line-height: 1.5;
   margin: 0;
@@ -234,6 +256,7 @@ toggle {
 
 
 /* Keyframes for rotation animations */
+
 @keyframes wave {
   0% {
     transform: rotate(0deg);
