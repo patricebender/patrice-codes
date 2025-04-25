@@ -1,16 +1,40 @@
 <template>
-  <div id="app" :class="{ 'dark-mode': isDarkMode }">
+  <div
+    id="app"
+    :class="{ 'dark-mode': isDarkMode }"
+  >
     <div id="content">
-      <img :src="profilePicture" alt="Patrice & Gunnar" id="profile-picture" @click="rotateProfilePicture" />
-      <h1>Hey there! <span id="shake-hand" @mouseover="shakeHand" @mouseleave="shakeHand">👋</span></h1>
+      <img
+        id="profile-picture"
+        :src="profilePicture"
+        alt="Patrice & Gunnar"
+        @click="rotateProfilePicture"
+      >
+      <h1>
+        Hey there! <span
+          id="shake-hand"
+          @mouseover="shakeHand"
+          @mouseleave="shakeHand"
+        >👋</span>
+      </h1>
       <p class="introduction">
-        I'm Patrice, a passionate software engineer 💻<br />
-        <br />As a member of the <a href="https://www.npmjs.com/package/@sap/cds-compiler" target="_blank"
-          rel="noopener noreferrer">cds-compiler</a> team at SAP, I help to build the
-        backbone of the <a href="https://cap.cloud.sap/docs/" target="_blank" rel="noopener noreferrer">SAP Cloud
+        I'm Patrice, a passionate software engineer 💻<br>
+        <br>As a member of the <a
+          href="https://www.npmjs.com/package/@sap/cds-compiler"
+          target="_blank"
+          rel="noopener noreferrer"
+        >cds-compiler</a> team at SAP, I help to build the
+        backbone of the <a
+          href="https://cap.cloud.sap/docs/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >SAP Cloud
           Application Programming (CAP 🧢) Model</a>.
         Besides my duty in the cds-compiler team, I'm particularly excited about our work on the open source <a
-          href="https://github.com/cap-js/cds-dbs" target="_blank" rel="noopener noreferrer">
+          href="https://github.com/cap-js/cds-dbs"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           database services for CAP</a>.
       </p>
       <h2>In My Free Time</h2>
@@ -21,27 +45,55 @@
         coffee.
       </p>
       <p class="introduction">
-        <strong>Welcome to my corner of the web! <span id="rocket" @mouseover="animateRocket"
-            @mouseleave="animateRocket" @click="animateRocket">🚀</span></strong>
+        <strong>Welcome to my corner of the web! <span
+          id="rocket"
+          @mouseover="animateRocket"
+          @mouseleave="animateRocket"
+          @click="animateRocket"
+        >🚀</span></strong>
       </p>
     </div>
     <footer>
-      <a href="https://www.linkedin.com/in/patrice-bender-64a816118/" alt="LinkedIn" target="_blank"
-        rel="noopener noreferrer">
-        <img :src="linkedInIcon" alt="LinkedIn" class="social-icon" />
+      <a
+        href="https://www.linkedin.com/in/patrice-bender-64a816118/"
+        alt="LinkedIn"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          :src="linkedInIcon"
+          alt="LinkedIn"
+          class="social-icon"
+        >
       </a>
       |
-      <a href="https://github.com/patricebender" target="_blank" rel="noopener noreferrer">
-        <img :src="githubIcon" alt="GitHub" class="social-icon" />
+      <a
+        href="https://github.com/patricebender"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          :src="githubIcon"
+          alt="GitHub"
+          class="social-icon"
+        >
       </a>
       |
       <a href="mailto:info@patrice.codes">
-        <img :src="mailIcon" alt="mail" class="social-icon" />
+        <img
+          :src="mailIcon"
+          alt="mail"
+          class="social-icon"
+        >
       </a>
       |
       <a>
-        <dark-mode-toggle @click="shakeHand" id="toggle" :is-dark-mode="isDarkMode"
-          @update:isDarkMode="isDarkMode = $event"></dark-mode-toggle>
+        <dark-mode-toggle
+          id="toggle"
+          :is-dark-mode="isDarkMode"
+          @click="shakeHand"
+          @update:is-dark-mode="isDarkMode = $event"
+        />
       </a>
     </footer>
   </div>

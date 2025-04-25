@@ -1,11 +1,21 @@
 <template>
-    <label class="switch">
-        <input type="checkbox" :checked="isDarkMode" @change="onToggle">
-        <span class="slider round">
-            <span v-show="!isDarkMode" class="emoji light">🌝</span> <!-- Light mode emoji -->
-            <span v-show="isDarkMode" class="emoji dark">🌚</span> <!-- Dark mode emoji -->
-        </span>
-    </label>
+  <label class="switch">
+    <input
+      type="checkbox"
+      :checked="isDarkMode"
+      @change="onToggle"
+    >
+    <span class="slider round">
+      <span
+        v-show="!isDarkMode"
+        class="emoji light"
+      >🌝</span> <!-- Light mode emoji -->
+      <span
+        v-show="isDarkMode"
+        class="emoji dark"
+      >🌚</span> <!-- Dark mode emoji -->
+    </span>
+  </label>
 </template>
 
 
@@ -15,6 +25,7 @@ export default {
     props: {
         isDarkMode: Boolean
     },
+    emits: ['update:isDarkMode'],
     methods: {
         onToggle(event) {
             this.$emit('update:isDarkMode', event.target.checked);
