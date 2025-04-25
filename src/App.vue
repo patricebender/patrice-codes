@@ -18,7 +18,7 @@
         >👋</span>
       </h1>
       <p class="introduction">
-        I'm Patrice, a passionate software engineer 💻<br>
+        I'm Patrice, a senior software engineer, welcome to my Website 💻<br>
         <br>As a member of the <a
           href="https://www.npmjs.com/package/@sap/cds-compiler"
           target="_blank"
@@ -39,11 +39,12 @@
       </p>
       <h2>In My Free Time</h2>
       <p class="introduction">
-        When I'm not coding, you'll find me outdoors with my Husky, Gunnar, enjoying activities together such as
-        canicross,
+        When I'm not coding, you'll find me outdoors with my Dog, Gunnar, enjoying activities together such as
+        canicross, hiking,
         bikejöring, or taking out the inline skates for a ride. I'm also a foodie who loves to cook and savor good
         coffee.
       </p>
+      <br>
       <p class="introduction">
         <strong>Welcome to my corner of the web! <span
           id="rocket"
@@ -175,13 +176,13 @@ export default {
       const shakeHand = document.getElementById('shake-hand');
       shakeHand.style.animation = 'none';
       shakeHand.offsetHeight; // Trigger reflow, browser does not re-render the animation otherwise
-      
-      if(e.type === 'mouseleave') return;
-      if(e.type === 'mouseover') {
+
+      if (e.type === 'mouseleave') return;
+      if (e.type === 'mouseover') {
         shakeHand.style.animation = 'wave 1.5s ease infinite';
         return;
       }
-      
+
       shakeHand.style.animation = 'wave 1.5s ease-in-out';
       this.waveCounter++;
       if (this.waveCounter === 10) { // easter egg if dark mode is toggled often enough
@@ -229,7 +230,7 @@ footer {
   flex: 1;
   margin: 0 auto;
   max-width: 800px;
-  padding: 0 10px;
+  padding: 0 20px;
   padding-bottom: 5em;
   display: flex;
   flex-direction: column;
