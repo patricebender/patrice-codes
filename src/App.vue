@@ -18,7 +18,7 @@
         >👋</span>
       </h1>
       <p class="introduction">
-        I'm Patrice, a senior software engineer, welcome to my Website 💻<br>
+        I'm Patrice,<br> a senior software engineer based in Heidelberg, Germany 🏰<br>
         <br>As a member of the <a
           href="https://www.npmjs.com/package/@sap/cds-compiler"
           target="_blank"
