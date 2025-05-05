@@ -1,47 +1,100 @@
 <template>
-  <div id="app" :class="{ 'dark-mode': isDarkMode }">
+  <div
+    id="app"
+    :class="{ 'dark-mode': isDarkMode }"
+  >
     <div id="content">
-      <img :src="profilePicture" alt="Patrice & Gunnar" id="profile-picture" @click="rotateProfilePicture" />
-      <h1>Hey there! <span id="shake-hand" @mouseover="shakeHand" @mouseleave="shakeHand">👋</span></h1>
+      <img
+        id="profile-picture"
+        :src="profilePicture"
+        alt="Patrice & Gunnar"
+        @click="rotateProfilePicture"
+      >
+      <h1>
+        Hey there! <span
+          id="shake-hand"
+          @mouseover="shakeHand"
+          @mouseleave="shakeHand"
+        >👋</span>
+      </h1>
       <p class="introduction">
-        I'm Patrice, a passionate software engineer 💻<br />
-        <br />As a member of the <a href="https://www.npmjs.com/package/@sap/cds-compiler" target="_blank"
-          rel="noopener noreferrer">cds-compiler</a> team at SAP, I help to build the
-        backbone of the <a href="https://cap.cloud.sap/docs/" target="_blank" rel="noopener noreferrer">SAP Cloud
+        I'm Patrice,<br> a senior software engineer based in Heidelberg, Germany 🏰<br>
+        <br>As a member of the <a
+          href="https://www.npmjs.com/package/@sap/cds-compiler"
+          target="_blank"
+          rel="noopener noreferrer"
+        >cds-compiler</a> team at SAP, I help to build the
+        backbone of the <a
+          href="https://cap.cloud.sap/docs/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >SAP Cloud
           Application Programming (CAP 🧢) Model</a>.
         Besides my duty in the cds-compiler team, I'm particularly excited about our work on the open source <a
-          href="https://github.com/cap-js/cds-dbs" target="_blank" rel="noopener noreferrer">
+          href="https://github.com/cap-js/cds-dbs"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           database services for CAP</a>.
       </p>
       <h2>In My Free Time</h2>
       <p class="introduction">
-        When I'm not coding, you'll find me outdoors with my Husky, Gunnar, enjoying activities together such as
-        canicross,
+        When I'm not coding, you'll find me outdoors with my Dog, Gunnar, enjoying activities together such as
+        canicross, hiking,
         bikejöring, or taking out the inline skates for a ride. I'm also a foodie who loves to cook and savor good
         coffee.
       </p>
+      <br>
       <p class="introduction">
-        <strong>Welcome to my corner of the web! <span id="rocket" @mouseover="animateRocket"
-            @mouseleave="animateRocket" @click="animateRocket">🚀</span></strong>
+        <strong>Welcome to my corner of the web! <span
+          id="rocket"
+          @mouseover="animateRocket"
+          @mouseleave="animateRocket"
+          @click="animateRocket"
+        >🚀</span></strong>
       </p>
     </div>
     <footer>
-      <a href="https://www.linkedin.com/in/patrice-bender-64a816118/" alt="LinkedIn" target="_blank"
-        rel="noopener noreferrer">
-        <img :src="linkedInIcon" alt="LinkedIn" class="social-icon" />
+      <a
+        href="https://www.linkedin.com/in/patrice-bender-64a816118/"
+        alt="LinkedIn"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          :src="linkedInIcon"
+          alt="LinkedIn"
+          class="social-icon"
+        >
       </a>
       |
-      <a href="https://github.com/patricebender" target="_blank" rel="noopener noreferrer">
-        <img :src="githubIcon" alt="GitHub" class="social-icon" />
+      <a
+        href="https://github.com/patricebender"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          :src="githubIcon"
+          alt="GitHub"
+          class="social-icon"
+        >
       </a>
       |
       <a href="mailto:info@patrice.codes">
-        <img :src="mailIcon" alt="mail" class="social-icon" />
+        <img
+          :src="mailIcon"
+          alt="mail"
+          class="social-icon"
+        >
       </a>
       |
       <a>
-        <dark-mode-toggle @click="shakeHand" id="toggle" :is-dark-mode="isDarkMode"
-          @update:isDarkMode="isDarkMode = $event"></dark-mode-toggle>
+        <dark-mode-toggle
+          id="toggle"
+          :is-dark-mode="isDarkMode"
+          @click="shakeHand"
+          @update:is-dark-mode="isDarkMode = $event"
+        />
       </a>
     </footer>
   </div>
@@ -123,13 +176,13 @@ export default {
       const shakeHand = document.getElementById('shake-hand');
       shakeHand.style.animation = 'none';
       shakeHand.offsetHeight; // Trigger reflow, browser does not re-render the animation otherwise
-      
-      if(e.type === 'mouseleave') return;
-      if(e.type === 'mouseover') {
+
+      if (e.type === 'mouseleave') return;
+      if (e.type === 'mouseover') {
         shakeHand.style.animation = 'wave 1.5s ease infinite';
         return;
       }
-      
+
       shakeHand.style.animation = 'wave 1.5s ease-in-out';
       this.waveCounter++;
       if (this.waveCounter === 10) { // easter egg if dark mode is toggled often enough
@@ -177,7 +230,7 @@ footer {
   flex: 1;
   margin: 0 auto;
   max-width: 800px;
-  padding: 0 10px;
+  padding: 0 20px;
   padding-bottom: 5em;
   display: flex;
   flex-direction: column;
