@@ -39,10 +39,7 @@
       </p>
       <h2>In My Free Time</h2>
       <p class="introduction">
-        When I'm not coding, you'll find me outdoors with my Dog, Gunnar, enjoying activities together such as
-        canicross, hiking,
-        bikejöring, or taking out the inline skates for a ride. I'm also a foodie who loves to cook and savor good
-        coffee.
+        When I'm not coding, you'll likely find me outdoors with my dog, Gunnar—canicrossing, hiking, bikejöring, or cruising on inline skates. I'm also a foodie who loves to cook and can't resist a well-made espresso.
       </p>
       <br>
       <p class="introduction">
